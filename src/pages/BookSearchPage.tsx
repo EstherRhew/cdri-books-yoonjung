@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AdvancedSearch } from '../components/AdvancedSearch';
 import { BookList } from '../components/BookList/BookList';
 import { Button } from '../components/Button';
 import { EmptyList } from '../components/EmptyList';
+import { PaginationWrapper } from '../components/Pagination';
 import { PopoverWrapper } from '../components/Popover';
 import { Search } from '../components/Search';
 import { Text } from '../components/Text';
@@ -26,6 +27,7 @@ export default function BookSearchPage() {
   ];
 
   const [advancedSearchOption, setAdvancedSearchOption] = useState(advancedOptions[0].id);
+  const [advancedSearchOpen, setAdvancedSearchOpen] = useState(false);
 
   const {
     items: searchHistory,
@@ -33,7 +35,8 @@ export default function BookSearchPage() {
     removeItem: removeSearchHistory,
   } = useLocalStorage<string>('book-search-history', 8);
 
-  const { data: bookSearchData } = useQuery(bookSearchQuery(searchKeyword, advancedSearchOption));
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data: bookSearchData } = useQuery(bookSearchQuery(searchKeyword, currentPage, advancedSearchOption));
   const list = bookSearchData?.documents || [];
   const totalCount = bookSearchData?.meta.total_count || 0;
 
@@ -50,7 +53,9 @@ export default function BookSearchPage() {
     setAdvancedSearchOpen(false);
   };
 
-  const [advancedSearchOpen, setAdvancedSearchOpen] = useState(false);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchKeyword]);
 
   return (
     <StyledBookSearchPage>
@@ -101,7 +106,19 @@ export default function BookSearchPage() {
         </div>
       </div>
 
-      {totalCount > 0 ? <BookList list={list} /> : <EmptyList desc="검색된 결과가 없습니다." />}
+      {totalCount > 0 ? (
+        <PaginationWrapper
+          data={list}
+          pageSize={10}
+          totalCount={totalCount}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        >
+          {() => <BookList list={list} />}
+        </PaginationWrapper>
+      ) : (
+        <EmptyList desc="검색된 결과가 없습니다." />
+      )}
     </StyledBookSearchPage>
   );
 }
