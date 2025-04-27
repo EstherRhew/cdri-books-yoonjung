@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
+import { Book } from '../../services/book/book.type';
 import { BookItemProvider } from './BookItemContext';
-import { mockFiles } from './BookList';
 
 interface BookItemProps {
-  data: (typeof mockFiles.documents)[number];
+  data: Book;
   expanded?: boolean;
   children: ReactNode;
 }

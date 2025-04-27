@@ -23,7 +23,7 @@ export default function FavoritesPage() {
       </div>
 
       {/* TODO: conditional rendering */}
-      <BookList />
+      <BookList list={[]} />
       {/* <EmptyList desc="검색된 결과가 없습니다." /> */}
     </StyledFavoritesPage>
   );

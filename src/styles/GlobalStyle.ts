@@ -34,5 +34,16 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.text.subtitle};
+      font-weight:${({ theme }) => theme.typography.caption.fontWeight};
+      font-size:${({ theme }) => theme.typography.caption.fontSize};
+      line-height:${({ theme }) => theme.typography.caption.lineHeight};
+      letter-spacing:${({ theme }) => theme.typography.caption.letterSpacing};
+
+    }
   }
+
+  
 `;
