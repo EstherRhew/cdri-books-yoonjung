@@ -34,9 +34,7 @@ export const AdvancedSearch = <T extends { id: string; text: string }>({
         variant="primary"
         size="large"
         style={{ width: '100%', height: '36px' }}
-        onClick={e => {
-          e.preventDefault();
-          console.log(props.value, 'props value');
+        onClick={() => {
           search?.(String(props.value) || '', selectedOption);
         }}
       >

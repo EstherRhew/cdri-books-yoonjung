@@ -47,6 +47,7 @@ export default function BookSearchPage() {
     search(item);
     setAdvancedSearchOption(targetOption.id);
     setInputValue('');
+    setAdvancedSearchOpen(false);
   };
 
   const [advancedSearchOpen, setAdvancedSearchOpen] = useState(false);
