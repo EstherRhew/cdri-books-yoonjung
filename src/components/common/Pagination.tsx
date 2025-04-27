@@ -22,6 +22,10 @@ export const PaginationWrapper = <T,>({
   const offset = (currentPage - 1) * pageSize;
   const paginatedData = data.slice(offset, offset + pageSize);
 
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
     <>
       {children(paginatedData)}
@@ -31,9 +35,7 @@ export const PaginationWrapper = <T,>({
           current={currentPage}
           total={totalCount}
           pageSize={pageSize}
-          onChange={setCurrentPage}
-          showLessItems
-          showTitle={false}
+          onChange={onPageChange}
           style={{ margin: '0 auto' }}
         />
       )}
