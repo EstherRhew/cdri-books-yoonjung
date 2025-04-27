@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BookIcon } from '../assets/image';
+import { BookIcon } from '../../assets/image';
 import { Image } from './Image';
 import { Text } from './Text';
 

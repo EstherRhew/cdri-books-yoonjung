@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { formatPrice } from '../../utils/common';
-import { Text } from '../Text';
+import { formatPrice } from '../../utils/formatString';
+import { Text } from '../common/Text';
 import { useBookItemContext } from './BookItemContext';
 
 export const BookItemPrice = () => {

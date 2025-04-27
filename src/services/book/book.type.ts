@@ -25,3 +25,9 @@ export interface Book {
 }
 
 export type BookSearchTarget = 'title' | 'publisher' | 'person';
+
+export interface SearchBookParams {
+  query: string;
+  page: number;
+  target?: BookSearchTarget;
+}

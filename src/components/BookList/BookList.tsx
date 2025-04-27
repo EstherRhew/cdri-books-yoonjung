@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useBookFavorites } from '../../hooks/useBookFavorites';
 import { Book } from '../../services/book/book.type';
-import { BookItem } from './BookItem';
-import { BookItemButtons } from './BookItemButtons';
-import { BookItemDescription } from './BookItemDescription';
-import { BookItemImage } from './BookItemImage';
-import { BookItemInfo } from './BookItemInfo';
-import { BookItemPrice } from './BookItemPrice';
+import { BookItem } from '../BookItem/BookItem';
+import { BookItemButtons } from '../BookItem/BookItemButtons';
+import { BookItemDescription } from '../BookItem/BookItemDescription';
+import { BookItemImage } from '../BookItem/BookItemImage';
+import { BookItemInfo } from '../BookItem/BookItemInfo';
+import { BookItemPrice } from '../BookItem/BookItemPrice';
 
 interface BookListProps {
   list: Book[];
