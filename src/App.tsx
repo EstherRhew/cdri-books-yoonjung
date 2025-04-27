@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { ThemeProvider } from 'styled-components';
-import { Header } from './components/Header';
+import { Layout } from './components/Layout';
 import BookSearchPage from './pages/BookSearchPage';
 import FavoritesPage from './pages/FavoritesPage';
 import { GlobalStyle } from './styles/GlobalStyle';
@@ -11,11 +11,12 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<BookSearchPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<BookSearchPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </ThemeProvider>
   );

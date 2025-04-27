@@ -11,10 +11,6 @@ export const GlobalStyle = createGlobalStyle`
   html, body, #root {
     height: 100%;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: ${({ theme }) => theme.typography.body1.fontSize};
-    font-weight: ${({ theme }) => theme.typography.body1.fontWeight};
-    line-height: ${({ theme }) => theme.typography.body1.lineHeight};
-    letter-spacing: ${({ theme }) => theme.typography.body1.letterSpacing};
     background-color: ${({ theme }) => theme.colors.palette.white};
     color: ${({ theme }) => theme.colors.text.primary};
   }
@@ -31,5 +27,12 @@ export const GlobalStyle = createGlobalStyle`
 
   ul, ol, li {
     list-style: none;
+  }
+
+  input {
+    all: unset;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
   }
 `;

@@ -7,11 +7,14 @@ export const theme = {
       lightGray: '#F2F4F6',
       white: '#FFFFFF',
       black: '#222222',
+      border: '#D2D6DA',
     },
     text: {
       primary: '#353C49',
       secondary: '#6D7582',
+      title: '#1A1E27',
       subtitle: '#8D94A0',
+      emphasis: '#4880EE',
     },
   },
   typography: {
