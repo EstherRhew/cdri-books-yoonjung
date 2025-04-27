@@ -1,12 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 import { api } from '../api';
-import { BookResponse, BookSearchTarget } from './book.type';
-
-interface SearchBookParams {
-  query: string;
-  page: number;
-  target?: BookSearchTarget;
-}
+import { BookResponse, BookSearchTarget, SearchBookParams } from './book.type';
 
 const getBookSearch = async ({ query, target, page = 1 }: SearchBookParams): Promise<BookResponse> => {
   const response = await api.get<BookResponse>('/search/book', {

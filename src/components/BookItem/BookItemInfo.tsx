@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ellipsis } from '../../styles/mixins';
-import { Text } from '../Text';
+import { Text } from '../common/Text';
 import { useBookItemContext } from './BookItemContext';
 
 export const BookItemInfo = () => {
@@ -17,7 +17,6 @@ export const BookItemInfo = () => {
           {data.authors.map((author, index) => {
             const addComma = index !== data.authors.length - 1;
             return (
-              // TODO: find better way
               <div className="author" key={author}>
                 <Text variant="body2" color={expanded ? 'subtitle' : 'secondary'} className="name">
                   {author}

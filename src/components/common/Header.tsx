@@ -22,10 +22,11 @@ export const Header = () => {
 };
 
 const StyledHeader = styled.header`
-  padding: 24px 160px;
+  padding: 24px 0px;
   display: flex;
   justify-content: center;
   position: relative;
+  min-width: 960px;
 
   .logo {
     position: absolute;

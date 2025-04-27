@@ -1,8 +1,9 @@
-import { InputHTMLAttributes, useEffect, useState } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 import styled from 'styled-components';
-import { CloseBlackIcon, SearchIcon } from '../assets/image';
-import { Image } from './Image';
-import { Text } from './Text';
+import { CloseBlackIcon, SearchIcon } from '../../../assets/image';
+import { Image } from '../../../components/common/Image';
+import { Text } from '../../../components/common/Text';
+import { useOutsideClickHandler } from '../../../hooks/useOutsideClickHandler';
 
 interface SearchProps extends InputHTMLAttributes<HTMLInputElement> {
   history?: string[];
@@ -10,27 +11,8 @@ interface SearchProps extends InputHTMLAttributes<HTMLInputElement> {
   search?: (item: string) => void;
 }
 
-export const Search = ({ history, onChange, onDeleteHistoryItem, search, ...props }: SearchProps) => {
+export const SearchInput = ({ history, onChange, onDeleteHistoryItem, search, ...props }: SearchProps) => {
   const [showHistory, setShowHistory] = useState(false);
-
-  const onClickOutside = (e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    if (!target.closest('.search-history') && !target.closest('.search-bar')) {
-      setShowHistory(false);
-    }
-  };
-
-  useEffect(() => {
-    if (showHistory) {
-      document.addEventListener('click', onClickOutside);
-    } else {
-      document.removeEventListener('click', onClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('click', onClickOutside);
-    };
-  }, [showHistory]);
 
   const hasHistory = history && history.length > 0;
 
@@ -39,8 +21,10 @@ export const Search = ({ history, onChange, onDeleteHistoryItem, search, ...prop
     setShowHistory(false);
   };
 
+  useOutsideClickHandler('.search-wrapper', () => setShowHistory(false));
+
   return (
-    <StyledSearch $showHistory={!!hasHistory && showHistory}>
+    <StyledSearch $showHistory={!!hasHistory && showHistory} className="search-wrapper">
       <div className="search-bar">
         <Image src={SearchIcon} alt="search" width="30px" height="30px" />
         <input
@@ -53,9 +37,7 @@ export const Search = ({ history, onChange, onDeleteHistoryItem, search, ...prop
               search(e.currentTarget.value || '');
             }
           }}
-          onFocus={() => {
-            setShowHistory(!!hasHistory);
-          }}
+          onFocus={() => setShowHistory(!!hasHistory)}
         />
       </div>
 
@@ -122,9 +104,11 @@ const StyledSearch = styled.div<{ $showHistory: boolean }>`
     background-color: ${({ theme }) => theme.colors.palette.lightGray};
     border-radius: 0px 0px 24px 24px;
     z-index: 1;
+
     .search-history-item {
       position: relative;
       cursor: pointer;
+
       .button-delete {
         width: 24px;
         height: 24px;

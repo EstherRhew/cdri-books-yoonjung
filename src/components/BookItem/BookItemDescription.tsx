@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Text } from '../Text';
+import { Text } from '../common/Text';
 import { useBookItemContext } from './BookItemContext';
 
 export const BookItemDescription = () => {

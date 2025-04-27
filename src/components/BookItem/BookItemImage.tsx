@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { LikeIcon, UnlikeIcon } from '../../assets/image';
 import { Book } from '../../services/book/book.type';
-import { Image } from '../Image';
+import { Image } from '../common/Image';
 import { useBookItemContext } from './BookItemContext';
 
 interface BookItemImageProps {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { ArrowIcon } from '../assets/image';
+import { ArrowIcon } from '../../assets/image';
 import { Image } from './Image';
 import { PopoverWrapper } from './Popover';
 import { Text } from './Text';
@@ -58,6 +58,7 @@ const StyledSelect = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   .trigger-button {
     display: flex;
     justify-content: space-between;

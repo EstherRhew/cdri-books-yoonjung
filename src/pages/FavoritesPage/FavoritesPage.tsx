@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { BookList } from '../components/BookList/BookList';
-import { EmptyList } from '../components/EmptyList';
-import { PaginationWrapper } from '../components/Pagination';
-import { Text } from '../components/Text';
-import { useBookFavorites } from '../hooks/useBookFavorites';
+import { BookList } from '../../components/BookList/BookList';
+import { EmptyList } from '../../components/common/EmptyList';
+import { PaginationWrapper } from '../../components/common/Pagination';
+import { Text } from '../../components/common/Text';
+import { useBookFavorites } from '../../hooks/useBookFavorites';
 
-export default function FavoritesPage() {
+export const FavoritesPage = () => {
   const { favoriteBooks } = useBookFavorites();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -44,7 +44,7 @@ export default function FavoritesPage() {
       )}
     </StyledFavoritesPage>
   );
-}
+};
 
 const StyledFavoritesPage = styled.div`
   display: flex;

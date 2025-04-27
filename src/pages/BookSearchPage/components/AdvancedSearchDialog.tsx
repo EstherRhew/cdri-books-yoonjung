@@ -1,14 +1,14 @@
 import { InputHTMLAttributes, useState } from 'react';
 import styled from 'styled-components';
-import { Button } from './Button';
-import { Select } from './Select';
+import { Button } from '../../../components/common/Button';
+import { Select } from '../../../components/common/Select';
 
 interface AdvancedSearchProps<T> extends InputHTMLAttributes<HTMLInputElement> {
   options: T[];
   search?: (item: string, option: T) => void;
 }
 
-export const AdvancedSearch = <T extends { id: string; text: string }>({
+export const AdvancedSearchDialog = <T extends { id: string; text: string }>({
   options,
   search,
   ...props

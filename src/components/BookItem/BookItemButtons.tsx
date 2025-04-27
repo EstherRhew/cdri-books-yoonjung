@@ -1,9 +1,9 @@
 import { Link } from 'react-router';
 import styled from 'styled-components';
 import { ArrowIcon } from '../../assets/image';
-import { Button } from '../Button';
-import { Image } from '../Image';
-import { Text } from '../Text';
+import { Button } from '../common/Button';
+import { Image } from '../common/Image';
+import { Text } from '../common/Text';
 import { useBookItemContext } from './BookItemContext';
 
 interface BookItemButtonsProps {
@@ -43,5 +43,13 @@ const StyledBookItemButtons = styled.div<{ $expanded: boolean }>`
       transform: ${({ $expanded }) => ($expanded ? 'rotate(180deg)' : 'rotate(0deg)')};
       transition: transform 0.3s ease;
     }
+  }
+
+  a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
