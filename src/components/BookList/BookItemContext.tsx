@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react';
-import { mockFiles } from './BookList';
+import { Book } from '../../services/book/book.type';
 
 interface BookItemContextValue {
-  data: (typeof mockFiles.documents)[number];
+  data: Book;
   expanded: boolean;
 }
 

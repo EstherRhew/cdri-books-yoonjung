@@ -2,11 +2,16 @@ import styled from 'styled-components';
 import { SearchIcon } from '../assets/image';
 import { Image } from './Image';
 
-export const Search = () => {
+interface SearchProps {
+  value: string;
+  setValue: (value: string) => void;
+}
+
+export const Search = ({ value, setValue }: SearchProps) => {
   return (
     <StyledSearch>
       <Image src={SearchIcon} alt="search" width="30px" height="30px" />
-      <input type="text" placeholder="검색어를 입력하세요" />
+      <input value={value} onChange={e => setValue(e.target.value)} type="text" placeholder="검색어를 입력하세요" />
     </StyledSearch>
   );
 };
