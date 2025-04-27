@@ -32,10 +32,6 @@ export const Search = ({ history, onChange, onDeleteHistoryItem, search, ...prop
     };
   }, [showHistory]);
 
-  useEffect(() => {
-    console.log('History:', history);
-  });
-
   const hasHistory = history && history.length > 0;
 
   const onClickHistory = (item: string) => {
@@ -111,10 +107,6 @@ const StyledSearch = styled.div<{ $showHistory: boolean }>`
       width: 100%;
       height: 100%;
       padding-left: 18px;
-
-      &::placeholder {
-        color: ${({ theme }) => theme.colors.text.subtitle};
-      }
     }
   }
 

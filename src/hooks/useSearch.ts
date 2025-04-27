@@ -5,7 +5,6 @@ export const useSearch = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
 
   const search = (value: string) => {
-    setInputValue(value);
     triggerSearch(value);
   };
 

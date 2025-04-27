@@ -24,4 +24,4 @@ export interface Book {
   sale_price: number;
 }
 
-export type BookSearchTarget = 'title' | 'isbn' | 'publisher' | 'person';
+export type BookSearchTarget = 'title' | 'publisher' | 'person';

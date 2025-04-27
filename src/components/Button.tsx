@@ -28,7 +28,6 @@ const StyledButton = styled.button<{ variant: Variant; size?: Size }>`
     max-height: 100%;
     box-sizing: border-box;
     white-space: nowrap;
-
     ${variant === 'primary' &&
     css`
       background-color: ${theme.colors.palette.primary};

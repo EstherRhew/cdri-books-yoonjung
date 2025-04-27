@@ -32,7 +32,6 @@ export const useLocalStorage = <T extends ItemType>(key: string, maxItems?: numb
   };
 
   const addItem = (item: T) => {
-    console.log('Adding item:', item);
     setItems(prev => {
       const withoutDuplicate = prev.filter(existing => !isEqual(existing, item));
       const updated = [...withoutDuplicate, item];
@@ -43,7 +42,6 @@ export const useLocalStorage = <T extends ItemType>(key: string, maxItems?: numb
   };
 
   const removeItem = (item: T) => {
-    console.log('Removing item:', item);
     setItems(prev => {
       const removed = prev.filter(existing => !isEqual(existing, item));
       saveToStorage(removed);
