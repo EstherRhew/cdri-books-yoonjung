@@ -1,22 +1,31 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
 import styled from 'styled-components';
 import { BookList } from '../components/BookList/BookList';
 import { Button } from '../components/Button';
 import { EmptyList } from '../components/EmptyList';
 import { Search } from '../components/Search';
 import { Text } from '../components/Text';
-import { useDebouncedValue } from '../hooks/useDebouncedSearch';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useSearch } from '../hooks/useSearch';
 import { bookSearchQuery } from '../services/book/book.api';
 
 export default function BookSearchPage() {
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const debouncedKeyword = useDebouncedValue(searchKeyword);
+  const { searchKeyword, search, inputValue, setInputValue } = useSearch();
 
-  const { data: bookSearchData } = useQuery(bookSearchQuery(debouncedKeyword));
+  const {
+    items: searchHistory,
+    addItem: addSearchHistory,
+    removeItem: removeSearchHistory,
+  } = useLocalStorage<string>('book-search-history', 8);
 
+  const { data: bookSearchData } = useQuery(bookSearchQuery(searchKeyword));
   const list = bookSearchData?.documents || [];
   const totalCount = bookSearchData?.meta.total_count || 0;
+
+  const onSearch = (item: string) => {
+    addSearchHistory(item);
+    search(item);
+  };
 
   return (
     <StyledBookSearchPage>
@@ -25,7 +34,13 @@ export default function BookSearchPage() {
       </Text>
 
       <div className="search-box">
-        <Search value={searchKeyword} setValue={setSearchKeyword} />
+        <Search
+          search={onSearch}
+          history={[...searchHistory].reverse()}
+          onDeleteHistoryItem={removeSearchHistory}
+          value={inputValue}
+          onChange={e => setInputValue(e.currentTarget.value)}
+        />
         <Button variant="tertiary" size="small">
           <Text variant="body2" color="subtitle">
             상세검색
