@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { Button } from '../../../components/common/Button';
 import { PopoverWrapper } from '../../../components/common/Popover';
 import { Text } from '../../../components/common/Text';
+import { advancedSearchOptions } from '../../../configs/constants';
 import { useLocalStorage } from '../../../hooks/useLocalStorage';
 import { useSearch } from '../../../hooks/useSearch';
 import { BookSearchTarget } from '../../../services/book/book.type';
-import { advancedSearchOptions } from '../config/constants';
 import { AdvancedSearchDialog } from './AdvancedSearchDialog';
 import { SearchInput } from './SearchInput';
 

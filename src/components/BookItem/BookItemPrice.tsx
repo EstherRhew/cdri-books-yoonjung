@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { formatPrice } from '../../utils/common';
+import { formatPrice } from '../../utils/formatString';
 import { Text } from '../common/Text';
 import { useBookItemContext } from './BookItemContext';
 

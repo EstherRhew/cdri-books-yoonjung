@@ -2,11 +2,9 @@ import { Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { BookListSkeleton } from '../../components/BookList/BookListSkeleton';
 import { Text } from '../../components/common/Text';
+import { advancedSearchOptions, PAGINATION_SIZE } from '../../configs/constants';
 import { BookListResult } from './components/BookListResult';
 import { BookSearch } from './components/BookSearch';
-import { advancedSearchOptions } from './config/constants';
-
-const PAGE_SIZE = 10;
 
 export const BookSearchPage = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -26,12 +24,12 @@ export const BookSearchPage = () => {
 
       <BookSearch setSearchKeyword={setSearchKeyword} setAdvancedSearchOption={setAdvancedSearchOption} />
 
-      <Suspense fallback={<BookListSkeleton count={PAGE_SIZE} />}>
+      <Suspense fallback={<BookListSkeleton count={PAGINATION_SIZE} />}>
         <BookListResult
           searchKeyword={searchKeyword}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          pageSize={PAGE_SIZE}
+          pageSize={PAGINATION_SIZE}
           target={advancedSearchOption}
         />
       </Suspense>
