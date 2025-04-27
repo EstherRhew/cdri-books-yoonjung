@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useBookFavorites } from '../../hooks/useBookFavorites';
 import { Book } from '../../services/book/book.type';
 import { BookItem } from './BookItem';
 import { BookItemButtons } from './BookItemButtons';
@@ -13,6 +14,7 @@ interface BookListProps {
 
 export const BookList = ({ list }: BookListProps) => {
   const [expandedList, setExpandedList] = useState<string[]>([]);
+  const { toggleLikeBook, isFavoriteBook } = useBookFavorites();
 
   const toggleExpand = (isbn: string) => {
     setExpandedList(prev => {
@@ -22,14 +24,13 @@ export const BookList = ({ list }: BookListProps) => {
       return [...prev, isbn];
     });
   };
-
   return (
     <>
       {list.map(book => {
         const isExpanded = expandedList.includes(book.isbn);
         return (
           <BookItem data={book} expanded={isExpanded} key={book.isbn}>
-            <BookItemImage />
+            <BookItemImage toggleLikeBook={toggleLikeBook} isFavoriteBook={isFavoriteBook} />
 
             <div className="book-info-layout">
               <BookItemInfo />
