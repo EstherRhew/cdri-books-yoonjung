@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import { BookList } from '../components/BookList/BookList';
+import { EmptyList } from '../components/EmptyList';
 import { Text } from '../components/Text';
+import { useBookFavorites } from '../hooks/useBookFavorites';
 
 export default function FavoritesPage() {
+  const { favoriteBooks } = useBookFavorites();
+
   return (
     <StyledFavoritesPage>
       <Text variant="title2" as="h2" color="title">
@@ -16,15 +20,13 @@ export default function FavoritesPage() {
         <div className="count-text">
           총{' '}
           <Text variant="caption" color="emphasis">
-            0
+            {favoriteBooks.length}
           </Text>
           건
         </div>
       </div>
 
-      {/* TODO: conditional rendering */}
-      <BookList list={[]} />
-      {/* <EmptyList desc="검색된 결과가 없습니다." /> */}
+      {favoriteBooks.length > 0 ? <BookList list={favoriteBooks} /> : <EmptyList desc="찜한 책이 없습니다." />}
     </StyledFavoritesPage>
   );
 }

@@ -1,16 +1,22 @@
 import styled from 'styled-components';
-import { UnlikeIcon } from '../../assets/image';
+import { LikeIcon, UnlikeIcon } from '../../assets/image';
+import { Book } from '../../services/book/book.type';
 import { Image } from '../Image';
 import { useBookItemContext } from './BookItemContext';
 
-export const BookItemImage = () => {
+interface BookItemImageProps {
+  toggleLikeBook: (item: Book) => void;
+  isFavoriteBook: (itemId: string) => boolean;
+}
+
+export const BookItemImage = ({ toggleLikeBook, isFavoriteBook }: BookItemImageProps) => {
   const { expanded, data } = useBookItemContext();
 
   return (
     <StyledBookItemImage $expanded={expanded}>
       <Image src={data.thumbnail} alt={'book-image'} />
-      <button className="like-button">
-        <Image src={UnlikeIcon} alt="like-button" />
+      <button className="like-button" onClick={() => toggleLikeBook(data)}>
+        <Image src={isFavoriteBook(data.isbn) ? LikeIcon : UnlikeIcon} alt="like-button" />
       </button>
     </StyledBookItemImage>
   );
