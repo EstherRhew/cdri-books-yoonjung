@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { BookList } from '../components/BookList/BookList';
 import { EmptyList } from '../components/EmptyList';
+import { PaginationWrapper } from '../components/Pagination';
 import { Text } from '../components/Text';
 import { useBookFavorites } from '../hooks/useBookFavorites';
 
 export default function FavoritesPage() {
   const { favoriteBooks } = useBookFavorites();
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <StyledFavoritesPage>
@@ -26,7 +29,19 @@ export default function FavoritesPage() {
         </div>
       </div>
 
-      {favoriteBooks.length > 0 ? <BookList list={favoriteBooks} /> : <EmptyList desc="찜한 책이 없습니다." />}
+      {favoriteBooks.length > 0 ? (
+        <PaginationWrapper
+          data={favoriteBooks}
+          totalCount={favoriteBooks.length}
+          pageSize={10}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        >
+          {pageData => <BookList list={pageData} />}
+        </PaginationWrapper>
+      ) : (
+        <EmptyList desc="찜한 책이 없습니다." />
+      )}
     </StyledFavoritesPage>
   );
 }

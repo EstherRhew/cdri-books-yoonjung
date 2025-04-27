@@ -35,5 +35,5 @@ axios.interceptors.response.use(
 );
 
 export const api = {
-  get: <T>(url: string, params?: Record<string, string>) => axios.get<T>(url, { params }),
+  get: <T>(url: string, params?: Record<string, unknown>) => axios.get<T>(url, { params }),
 };
